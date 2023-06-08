@@ -2,7 +2,7 @@ import DashboardTemplate from "../Template/DashboardTemplate";
 import SubMenu from "../../components/SubMenu/SubMenu";
 import FormInput from "../../components/FormInput/FormInput";
 
-function CreateArticle() {
+function EditArticle() {
   return(
     <DashboardTemplate>
       <ul className="flex border-b-2 pb-4 space-x-2">
@@ -26,7 +26,9 @@ function CreateArticle() {
         </li>
       </ul>
       <div className="flex mt-5 bg-backgroundWhite-100">
-        <FormInput titleForm={"Add"}/>
+        <FormInput 
+          titleForm={"Edit Article"}
+        />
       </div>
       
     </DashboardTemplate>
@@ -34,4 +36,4 @@ function CreateArticle() {
   
 }
 
-export default CreateArticle
+export default EditArticle
