@@ -21,6 +21,19 @@ function ArticleList() {
       })
   },[])
 
+  const handleSearch = async (q) => {
+    console.log(q)
+    if(q.length > 3){
+      getArticle("/api/articles", `search=${q}&page=1&page_size=5`)
+      .then((result)=>{
+        setIndex(result.data)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+    }
+  }
+
   return(
     <DashboardTemplate>
       <ul className="flex border-b-2 pb-4 space-x-2">
@@ -45,7 +58,7 @@ function ArticleList() {
       </ul>
       <div className="mt-5 pb-5 bg-backgroundWhite-100">
         <div className="flex justify-between">
-          <SearchBar />
+          <SearchBar onSearch={handleSearch} />
           <Link
             to="/article/add"
             className="flex rounded-md bg-backgroundGreen-300 w-[60px] h-[24px] mt-5 mr-5 items-center justify-center"
