@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
+import { dateFormatter } from "../../utils/dateTimeFormatter"
 
-function Table({id, date, title, content}) {
+function Table({data}) {
   return(
     <table className="w-full m-5">
       <thead>
@@ -12,25 +13,32 @@ function Table({id, date, title, content}) {
         </tr>
       </thead>
       <tbody>
-        <tr className="h-16 text-text-100 text-[14px] font-sans font-normal text-center">
-          <td className="border">06 Mar 2023</td>
-          <td className="border">Lorem ipsum</td>
-          <td className="border">Lorem ipsum, dolor sit amet</td>
-          <td className="border flex justify-center h-16 space-x-2">
-            <Link 
-              to="/article/edit"
-              className="w-6 h6"
+        {
+          data.map((article) => (
+            <tr 
+              className="h-16 text-text-100 text-[14px] font-sans font-normal"
+              key={article.id}
             >
-              <img src="/img/edit.svg" alt="edit-data" className="w-full h-full"/>
-            </Link>
-            <Link
-              to="#"
-              className="w-6 h6"
-            >
-              <img src="/img/trash.svg" alt="delete-data" className="w-full h-full"/>          
-            </Link>
-          </td>
-        </tr>
+              <td className="border text-center">{dateFormatter(article.created_at)}</td>
+              <td className="border pl-5">{article.title.slice(0, 50)}</td>
+              <td className="border pl-5">{article.content.slice(0, 80)}</td>
+              <td className="border flex justify-center h-16 space-x-2">
+                <Link
+                  to={`/article/edit?id=${article.id}`}
+                  className="w-6 h6"
+                >
+                  <img src="/img/edit.svg" alt="edit-data" className="w-full h-full"/>
+                </Link>
+                <Link
+                  to={`/article/edit?id=${article.id}`}
+                  className="w-6 h6"
+                >
+                  <img src="/img/trash.svg" alt="delete-data" className="w-full h-full"/>          
+                </Link>
+              </td>
+            </tr>
+          ))
+        }
       </tbody>
     </table>
   )

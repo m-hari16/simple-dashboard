@@ -4,8 +4,23 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import SubMenu from "../../components/SubMenu/SubMenu";
 import Table from "../../components/Table/Table";
 import DashboardTemplate from "../Template/DashboardTemplate";
+import { useEffect, useState } from "react";
+import { getArticle } from "../../api/article";
 
 function ArticleList() {
+  const [index, setIndex] = useState([])
+  const [loadnig, setLoading] = useState(true)
+
+  useEffect(() => {
+    getArticle("/api/articles", "page=1&page_size=5")
+      .then((result)=>{
+        setIndex(result.data)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  },[])
+
   return(
     <DashboardTemplate>
       <ul className="flex border-b-2 pb-4 space-x-2">
@@ -38,8 +53,16 @@ function ArticleList() {
             <span className="text-white text-[13px] font-sans font-semibold">+ Add</span>
           </Link>
         </div>
-        <div className="flex">
-          <Table/>
+        <div className="flex justify-center">
+          {
+            loadnig ? (
+              <p className="m-5">Loading...</p>
+            ) : (
+              <Table 
+                data={index.articles}
+              />
+            )
+          }
         </div>
         <div className="flex w-full justify-end pr-5">
           <Pagination/>
