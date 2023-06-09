@@ -1,4 +1,12 @@
-function FormInput({titleForm, onSubmit}) {
+function FormInput({titleForm, onSubmit, data}) {
+  let title = ""
+  let content = ""
+
+  if(data != null) {
+    title = data.title
+    content = data.content
+  }
+
   return(
     <div className="w-full m-5">
       <h2 className="text-text-100 text-[20px] font-sans font-semibold mb-4">{titleForm}</h2>
@@ -14,6 +22,7 @@ function FormInput({titleForm, onSubmit}) {
             type="text"
             name="title"
             id="title"
+            defaultValue={title}
             className="w-[50%] rounded-md border bg-backgroundWhite-200 py-3 px-6 text-base font-sans text-text-100"
           />
         </div>
@@ -29,7 +38,7 @@ function FormInput({titleForm, onSubmit}) {
             name="content"
             id="content"
             className="w-full resize-none rounded-md border bg-backgroundWhite-200 py-3 px-6 text-base font-sans text-text-100"
-          ></textarea>
+          >{content}</textarea>
         </div>
 
         <div>

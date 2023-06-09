@@ -12,6 +12,11 @@ export const addArticle = async (url, body) => {
   return apiCall.data
 }
 
+export const editArticle = async (url, id, body) => {
+  const apiCall = await axios.put(`${BaseUrl}${url}/${id}`, body)
+  return apiCall.data
+}
+
 export const deleteArticle = async (url, id) => {
   const apiCall = await axios.delete(`${BaseUrl}${url}/${id}`)
   return apiCall.data

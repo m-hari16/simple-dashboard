@@ -7,6 +7,7 @@ function Table({data}) {
     await deleteArticle("/api/articles", id)
     window.location.reload();
   }
+
   return(
     <table className="w-full m-5">
       <thead>
@@ -30,6 +31,7 @@ function Table({data}) {
               <td className="border flex justify-center h-16 space-x-2">
                 <Link
                   to={`/article/edit?id=${article.id}`}
+                  state={article}
                   className="w-6 h6"
                 >
                   <img src="/img/edit.svg" alt="edit-data" className="w-full h-full"/>
