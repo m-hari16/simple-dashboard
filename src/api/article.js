@@ -8,5 +8,6 @@ export const getArticle = async (url, query) => {
 }
 
 export const addArticle = async (url, body) => {
-  
+  const apiCall = await axios.post(`${BaseUrl}${url}`, body)
+  return apiCall.data
 }

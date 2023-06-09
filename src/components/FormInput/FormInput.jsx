@@ -1,9 +1,9 @@
-function FormInput({titleForm}) {
+function FormInput({titleForm, onSubmit}) {
   return(
     <div className="w-full m-5">
       <h2 className="text-text-100 text-[20px] font-sans font-semibold mb-4">{titleForm}</h2>
       <hr className="mb-6"/>
-      <form>
+      <form onSubmit={onSubmit}>
         <div className="mb-5">
           <label
             className="mb-1 block text-text-100 text-[13px] font-sans font-semibold"
@@ -34,6 +34,7 @@ function FormInput({titleForm}) {
 
         <div>
           <button
+            type="submit"
             className="rounded-md bg-backgroundGreen-300 w-[97px] h-[42px] text-white text-[16px] font-sans font-semibold"
           >
             Save

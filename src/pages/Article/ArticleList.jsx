@@ -12,7 +12,7 @@ function ArticleList() {
   const [loadnig, setLoading] = useState(true)
 
   useEffect(() => {
-    getArticle("/api/articles", "page=1&page_size=5")
+    getArticle("/api/articles", "page=1&page_size=20")
       .then((result)=>{
         setIndex(result.data)
       })

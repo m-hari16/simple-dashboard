@@ -1,8 +1,29 @@
 import DashboardTemplate from "../Template/DashboardTemplate";
 import SubMenu from "../../components/SubMenu/SubMenu";
 import FormInput from "../../components/FormInput/FormInput";
+import { addArticle } from "../../api/article";
+import { useNavigate } from 'react-router-dom';
 
-function CreateArticle() {
+function CreateArticle() {  
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const title = form.title.value;
+    const content = form.content.value;
+
+    const newData = {
+      title,
+      content,
+    };
+
+    const postArticle = await addArticle("/api/articles", newData);
+
+    navigate("/")
+  }
+
   return(
     <DashboardTemplate>
       <ul className="flex border-b-2 pb-4 space-x-2">
@@ -26,7 +47,7 @@ function CreateArticle() {
         </li>
       </ul>
       <div className="flex mt-5 bg-backgroundWhite-100">
-        <FormInput titleForm={"Add"}/>
+        <FormInput titleForm={"Add"} onSubmit={handleSubmit} />
       </div>
       
     </DashboardTemplate>
