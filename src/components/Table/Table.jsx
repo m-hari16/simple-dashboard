@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom"
 import { dateFormatter } from "../../utils/dateTimeFormatter"
+import { deleteArticle } from "../../api/article"
 
 function Table({data}) {
+  const handleDelete = async (id) => {
+    await deleteArticle("/api/articles", id)
+    window.location.reload();
+  }
   return(
     <table className="w-full m-5">
       <thead>
@@ -29,12 +34,12 @@ function Table({data}) {
                 >
                   <img src="/img/edit.svg" alt="edit-data" className="w-full h-full"/>
                 </Link>
-                <Link
-                  to={`/article/edit?id=${article.id}`}
+                <button
                   className="w-6 h6"
+                  onClick={() => handleDelete(article.id)}
                 >
                   <img src="/img/trash.svg" alt="delete-data" className="w-full h-full"/>          
-                </Link>
+                </button>
               </td>
             </tr>
           ))

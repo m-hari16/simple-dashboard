@@ -19,7 +19,7 @@ function CreateArticle() {
       content,
     };
 
-    const postArticle = await addArticle("/api/articles", newData);
+    await addArticle("/api/articles", newData);
 
     navigate("/")
   }

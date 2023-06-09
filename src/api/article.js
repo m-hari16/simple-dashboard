@@ -11,3 +11,8 @@ export const addArticle = async (url, body) => {
   const apiCall = await axios.post(`${BaseUrl}${url}`, body)
   return apiCall.data
 }
+
+export const deleteArticle = async (url, id) => {
+  const apiCall = await axios.delete(`${BaseUrl}${url}/${id}`)
+  return apiCall.data
+}
